@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Retorno do Facebook</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="font-family:sans-serif;max-width:32rem;margin:3rem auto;padding:0 1rem">
+<p id="m">Voltando para o app no seu computador…</p>
+<script>
+// Página de repasse (spec 041): o Facebook devolve o usuário para este endereço https; ela entrega code/state ao app local.
+// Só funciona no computador onde o app está aberto (porta 8765). Nada é guardado ou enviado a outro servidor.
+var p = new URLSearchParams(location.search);
+if (p.get("code") || p.get("error")) {
+  location.replace("http://127.0.0.1:8765/oauth/facebook" + location.search);
+} else {
+  document.getElementById("m").textContent = "Esta página só é usada no retorno do login do Facebook.";
+}
+</script></body></html>
